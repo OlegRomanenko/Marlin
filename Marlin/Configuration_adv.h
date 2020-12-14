@@ -838,11 +838,11 @@
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_DEACTIVE_TIME 0
-#define DISABLE_INACTIVE_X false
-#define DISABLE_INACTIVE_Y false
-#define DISABLE_INACTIVE_Z false  // Set 'false' if the nozzle could fall onto your printed part!
-#define DISABLE_INACTIVE_E false
+#define DEFAULT_STEPPER_DEACTIVE_TIME 3000
+#define DISABLE_INACTIVE_X true
+#define DISABLE_INACTIVE_Y true
+#define DISABLE_INACTIVE_Z true  // Set 'false' if the nozzle could fall onto your printed part!
+#define DISABLE_INACTIVE_E true
 
 // If the Nozzle or Bed falls when the Z stepper is disabled, set its resting position here.
 //#define Z_AFTER_DEACTIVATE Z_HOME_POS
@@ -1125,7 +1125,7 @@
 //#define LCD_DECIMAL_SMALL_XY
 
 // The timeout (in ms) to return to the status screen from sub-menus
-#define LCD_TIMEOUT_TO_STATUS 15000
+#define LCD_TIMEOUT_TO_STATUS 60000
 
 // Add an 'M73' G-code to set the current percentage
 #define LCD_SET_PROGRESS_MANUALLY
@@ -2087,10 +2087,10 @@
  * Requires NOZZLE_PARK_FEATURE.
  * This feature is required for the default FILAMENT_RUNOUT_SCRIPT.
  */
-//#define ADVANCED_PAUSE_FEATURE
+// #define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
-  #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
-  #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
+  #define PAUSE_PARK_RETRACT_FEEDRATE         30  // (mm/s) Initial retract feedrate.
+  #define PAUSE_PARK_RETRACT_LENGTH            1  // (mm) Initial retract.
                                                   // This short retract is done immediately, before parking the nozzle.
   #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     10  // (mm/s) Unload filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_UNLOAD_ACCEL        25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
@@ -2128,7 +2128,7 @@
   //#define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
   //#define HOME_BEFORE_FILAMENT_CHANGE           // If needed, home before parking for filament change
 
-  //#define FILAMENT_LOAD_UNLOAD_GCODES           // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
+  #define FILAMENT_LOAD_UNLOAD_GCODES           // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
   //#define FILAMENT_UNLOAD_ALL_EXTRUDERS         // Allow M702 to unload all extruders above a minimum target temp (as set by M302)
 #endif
 
@@ -2296,7 +2296,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       1200
+    #define Z_CURRENT       1000
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -2328,7 +2328,7 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      700
+    #define E0_CURRENT      650
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2504,22 +2504,22 @@
    */
   #define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     150  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    150
-  #define Y_HYBRID_THRESHOLD     150
-  #define Y2_HYBRID_THRESHOLD    150
-  #define Z_HYBRID_THRESHOLD      10
-  #define Z2_HYBRID_THRESHOLD     10
-  #define Z3_HYBRID_THRESHOLD     10
-  #define Z4_HYBRID_THRESHOLD     10
-  #define E0_HYBRID_THRESHOLD      3
-  #define E1_HYBRID_THRESHOLD      3
-  #define E2_HYBRID_THRESHOLD      3
-  #define E3_HYBRID_THRESHOLD      3
-  #define E4_HYBRID_THRESHOLD      3
-  #define E5_HYBRID_THRESHOLD      3
-  #define E6_HYBRID_THRESHOLD      3
-  #define E7_HYBRID_THRESHOLD      3
+  #define X_HYBRID_THRESHOLD     300  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    300
+  #define Y_HYBRID_THRESHOLD     300
+  #define Y2_HYBRID_THRESHOLD    300
+  #define Z_HYBRID_THRESHOLD      50
+  #define Z2_HYBRID_THRESHOLD     50
+  #define Z3_HYBRID_THRESHOLD     50
+  #define Z4_HYBRID_THRESHOLD     50
+  #define E0_HYBRID_THRESHOLD    100
+  #define E1_HYBRID_THRESHOLD    100
+  #define E2_HYBRID_THRESHOLD    100
+  #define E3_HYBRID_THRESHOLD    100
+  #define E4_HYBRID_THRESHOLD    100
+  #define E5_HYBRID_THRESHOLD    100
+  #define E6_HYBRID_THRESHOLD    100
+  #define E7_HYBRID_THRESHOLD    100
 
   /**
    * Use StallGuard to home / probe X, Y, Z.

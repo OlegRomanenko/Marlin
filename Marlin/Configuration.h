@@ -131,7 +131,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "ZAV, 1.0.11"
+#define CUSTOM_MACHINE_NAME "ZAV, 1.0.18"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -465,7 +465,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 315
+#define HEATER_0_MAXTEMP 330
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -499,9 +499,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  14.54
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd  48.82
+    #define DEFAULT_Kp  25.06
+    #define DEFAULT_Ki   2.39
+    #define DEFAULT_Kd  65.59
   #endif
 #endif // PIDTEMP
 
@@ -540,10 +540,9 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 79.24
-  #define DEFAULT_bedKi 14.70
-  #define DEFAULT_bedKd 284.73
-
+  #define DEFAULT_bedKp 88.67
+  #define DEFAULT_bedKi 16.78
+  #define DEFAULT_bedKd 312.46
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
 
@@ -565,7 +564,7 @@
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+#define EXTRUDE_MINTEMP 160
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -741,18 +740,18 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 400 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 413 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 2, 40 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 2, 60 }
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 500, 500, 3, 50 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 500, 500, 3, 100 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -761,7 +760,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 50, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 50, 5000 }
 
 #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -776,9 +775,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  5000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          1500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   1500    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -876,7 +875,7 @@
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
 #define PROBE_MANUALLY
-#define MANUAL_PROBE_START_Z 0.1
+#define MANUAL_PROBE_START_Z 0.15
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
@@ -990,7 +989,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 5
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_SPEED (60*60)
@@ -1093,7 +1092,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1122,16 +1121,16 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 105
-#define Y_BED_SIZE 109
+#define X_BED_SIZE 100
+#define Y_BED_SIZE 103
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS -2
+#define Y_MIN_POS -1
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 100
+#define Z_MAX_POS 105
 
 /**
  * Software Endstops
@@ -1353,8 +1352,8 @@
 #define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 10, 10, 10, 10 } // (mm) Left, Front, Right, Back insets
-  #define LEVEL_CORNERS_HEIGHT      0.1   // (mm) Z height of nozzle at leveling points
+  #define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } // (mm) Left, Front, Right, Back insets
+  #define LEVEL_CORNERS_HEIGHT      0.15   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
 #endif
