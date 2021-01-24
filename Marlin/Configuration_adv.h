@@ -413,7 +413,7 @@
 // When first starting the main fan, run it at full speed for the
 // given number of milliseconds.  This gets the fan spinning reliably
 // before setting a PWM value. (Does not work with software PWM for fan on Sanguinololu)
-//#define FAN_KICKSTART_TIME 100
+#define FAN_KICKSTART_TIME 1000
 
 // Some coolers may require a non-zero "off" state.
 //#define FAN_OFF_PWM  1
@@ -2504,14 +2504,14 @@
    */
   #define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     300  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    300
-  #define Y_HYBRID_THRESHOLD     300
-  #define Y2_HYBRID_THRESHOLD    300
-  #define Z_HYBRID_THRESHOLD      50
-  #define Z2_HYBRID_THRESHOLD     50
-  #define Z3_HYBRID_THRESHOLD     50
-  #define Z4_HYBRID_THRESHOLD     50
+  #define X_HYBRID_THRESHOLD     350  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    350
+  #define Y_HYBRID_THRESHOLD     350
+  #define Y2_HYBRID_THRESHOLD    350
+  #define Z_HYBRID_THRESHOLD     100
+  #define Z2_HYBRID_THRESHOLD    100
+  #define Z3_HYBRID_THRESHOLD    100
+  #define Z4_HYBRID_THRESHOLD    100
   #define E0_HYBRID_THRESHOLD    100
   #define E1_HYBRID_THRESHOLD    100
   #define E2_HYBRID_THRESHOLD    100
@@ -2550,7 +2550,7 @@
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  100
+    #define X_STALL_SENSITIVITY  135
     //#define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
     #define Y_STALL_SENSITIVITY  100
     //#define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY

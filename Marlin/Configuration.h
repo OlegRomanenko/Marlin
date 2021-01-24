@@ -131,7 +131,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "ZAV, 1.0.18"
+#define CUSTOM_MACHINE_NAME "ZAV, 1.0.19"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -499,9 +499,10 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  25.06
-    #define DEFAULT_Ki   2.39
-    #define DEFAULT_Kd  65.59
+    // ZAV fan, 4020, 235C, M301 P18.42 I1.42 D59.70
+    #define DEFAULT_Kp 18.42
+    #define DEFAULT_Ki 1.42
+    #define DEFAULT_Kd 59.70
   #endif
 #endif // PIDTEMP
 
@@ -745,7 +746,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 413 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 1600, 413 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -769,7 +770,7 @@
 
 #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 5000, 5000, 200, 20000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 10000, 10000, 200, 20000 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1126,8 +1127,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 100
-#define Y_BED_SIZE 103
+#define X_BED_SIZE 105
+#define Y_BED_SIZE 98
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -2
@@ -1135,7 +1136,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 105
+#define Z_MAX_POS 103
 
 /**
  * Software Endstops
